@@ -1,0 +1,23 @@
+SELECT * 
+FROM GlobalSportFinances;
+
+-- Which teams have the highest payroll?
+SELECT Team, Total_Payroll
+FROM GlobalSportFinances
+Order by Total_Payroll DESC;
+
+-- Which teams spend the most for Avg. per player in relation to their total payroll?
+SELECT Team, Average_Annual_pay_per_player, (Average_Annual_pay_per_player/Total_Payroll)*100 AS Percent_of_Total_Payroll
+FROM GlobalSportFinances
+ORDER BY Percent_of_Total_Payroll DESC;
+
+-- Which league has the highest payroll?
+SELECT League, SUM(Total_Payroll)
+FROM GlobalSportFinances
+GROUP BY League
+ORDER BY SUM(Total_Payroll) DESC;
+
+-- What is the Average Annual Pay per Player for MLB teams?
+SELECT Team, Average_Annual_pay_per_player
+FROM GlobalSportFinances
+WHERE League = 'MLB';
